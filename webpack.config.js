@@ -4,7 +4,22 @@ const path = require('path'); //this is common js module format which webpack su
 module.exports = {
     entry: './src/index.js',
     output: {
-        filename: 'main.js',
+        filename: 'dundle.js',
         path: path.resolve(__dirname, 'dist'),
     },
+    module: {
+        rules: [
+            {
+                /**
+                 * using this loader whenever there is import '.styles.css',
+                 * a <style> tag with the stringified css will be inserted into the <head> of your html file.
+                 */
+                test: /\.css$/,
+                use: [
+                    'style-loader',
+                    'css-loader'
+                ]
+            }
+        ]
+    }
 }
